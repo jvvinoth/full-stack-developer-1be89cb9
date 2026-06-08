@@ -15,8 +15,22 @@ export default function ContactSection() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Form submission would be handled here
-    console.log('Form submitted:', formData);
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`New Project Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Company: ${formData.company || 'N/A'}\n` +
+      `Timeline: ${formData.timeline}\n` +
+      `Budget: ${formData.budget}\n\n` +
+      `Project Details:\n${formData.details}`
+    );
+    
+    // Open email client
+    window.location.href = `mailto:kamaleshkabirdas@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Show confirmation
     alert('Thank you for your inquiry! I\'ll get back to you within 48 hours.');
   };
 
@@ -185,8 +199,8 @@ export default function ContactSection() {
         <div className="mt-8 text-center">
           <p className="text-slate-300 text-sm">
             Prefer email? Reach out directly at{' '}
-            <a href="mailto:hello@example.com" className="text-white font-semibold hover:text-accent transition-colors">
-              hello@example.com
+            <a href="mailto:kamaleshkabirdas@gmail.com" className="text-white font-semibold hover:text-accent transition-colors">
+              kamaleshkabirdas@gmail.com
             </a>
           </p>
         </div>
