@@ -28,7 +28,7 @@ export default function ContactSection() {
     );
     
     // Open email client
-    window.location.href = `mailto:kamaleshkabirdas@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:kamaleshkabeerdoss@gmail.com?subject=${subject}&body=${body}`;
     
     // Show confirmation
     alert('Thank you for your inquiry! I\'ll get back to you within 48 hours.');
@@ -189,20 +189,38 @@ export default function ContactSection() {
               type="submit"
               className="w-full bg-accent text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-accent/90 hover:shadow-xl transition-all flex items-center justify-center gap-2 mt-8"
             >
-              {contact.form.submitText}
-              <Send size={20} />
+              {contact.form.submitButton}
+              <Send className="w-5 h-5" />
             </button>
           </div>
         </form>
 
-        {/* Additional Contact Info */}
+        {/* Alternative Contact Methods */}
         <div className="mt-8 text-center">
-          <p className="text-slate-300 text-sm">
-            Prefer email? Reach out directly at{' '}
-            <a href="mailto:kamaleshkabirdas@gmail.com" className="text-white font-semibold hover:text-accent transition-colors">
-              kamaleshkabirdas@gmail.com
-            </a>
+          <p className="text-slate-200 mb-4">
+            Or reach out directly:
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white">
+            {contact.email && (
+              <a
+                href={`mailto:${contact.email}`}
+                className="flex items-center gap-2 hover:text-accent transition-colors"
+              >
+                <span className="font-medium">{contact.email}</span>
+              </a>
+            )}
+            {contact.phone && (
+              <>
+                <span className="hidden sm:inline text-slate-400">•</span>
+                <a
+                  href={`tel:${contact.phone}`}
+                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                >
+                  <span className="font-medium">{contact.phone}</span>
+                </a>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>
